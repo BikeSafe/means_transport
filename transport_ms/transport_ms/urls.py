@@ -5,8 +5,8 @@ from transport_ms.views.transport_view import TransportDetail
 from transport_ms.views.transport_view import TransportDetailUser
 
 urlpatterns = [
-    path('transporte/', TransportList.as_view()),
-    path('transporte/<int:pk>', TransportDetail.as_view()),
+    path('transportes/', TransportList.as_view()),
+    path('transportes/<int:pk>', TransportDetail.as_view()),
     path('transporteusu/<int>', TransportDetailUser.as_view()),
 ]
 

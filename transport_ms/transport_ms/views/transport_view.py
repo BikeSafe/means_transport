@@ -1,4 +1,4 @@
-from transport_ms.models.transport_model import Transport
+from transport_ms.models.transport_model import Transporte
 from transport_ms.serializers.transport_serializer import TransportSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -10,7 +10,7 @@ class TransportList(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
 
-    queryset = Transport.objects.all()
+    queryset = Transporte.objects.all()
     serializer_class = TransportSerializer
 
     def get(self, request, *args, **kwargs):
@@ -25,7 +25,7 @@ class TransportDetail(mixins.RetrieveModelMixin,
                     mixins.DestroyModelMixin,
                     generics.GenericAPIView):
 
-    queryset = Transport.objects.all()
+    queryset = Transporte.objects.all()
     serializer_class = TransportSerializer
 
     def get(self, request, *args, **kwargs):
@@ -42,10 +42,11 @@ class TransportDetailUser(mixins.RetrieveModelMixin,
                     mixins.DestroyModelMixin,
                     generics.GenericAPIView):
 
-    queryset = Transport.objects.all()
+    queryset = Transporte.objects.all()
     serializer_class = TransportSerializer
 
     def get(self, request, *args, **kwargs):
-        usertransport = [Transport.id_transporte for id_usuario in Transport.objects.all()]
-        return Response(usertransport)
+        #usertransport = queryset(SELECT * FROM transport_ms_transporte WHERE transport_ms_transporte.id_usuario = %s)
+        usertransport = Transporte.objects.extra(select={"select * from transport_ms_transporte where transport_ms_transporte.id_usuario = %s"},select_params=(someparam,),)
+        return usertransport
 

@@ -1,20 +1,20 @@
 from rest_framework import serializers
-from transport_ms.models.transport_model import Transport
+from transport_ms.models.transport_model import Transporte
 
 class TransportSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Transport
+        model = Transporte
         fields = ['id_transporte','id_usuario','tipo_transporte', 'carac_transporte', 'color_transporte']
 
     def create(self, validated_data):
 
-        transport = Transport( id_usuario = validated_data.get("id_usuario"),
+        transporte = Transporte( id_usuario = validated_data.get("id_usuario"),
                           tipo_transporte = validated_data.get("tipo_transporte"),
                           carac_transporte = validated_data.get("carac_transporte"),
                           color_transporte= validated_data.get("color_transporte"))
-        transport.save()
-        return transport
+        transporte.save()
+        return transporte
 
     def update(self, instance, validated_data):
         instance.id_usuario = validated_data.get("id_usuario")
