@@ -20,12 +20,12 @@ docker inspect --format='{{range .NetworkSettings.Networks}}{{println .IPAddress
 **Comando al ejecutar por primera vez**
 
 ```
-docker build -t transport_ms . && docker run -p 4000:4000 -e DB_HOST=172.17.0.2 -e DB_PORT=3306 -e DB_USER=root -e DB_PASSWORD=secret -e DB_NAME=transporte -e URL=0.0.0.0:4000 transport_ms
+docker build -t transport_ms . && docker run -p 4001:4001 -e DB_HOST=172.17.0.2 -e DB_PORT=3306 -e DB_USER=root -e DB_PASSWORD=secret -e DB_NAME=transporte -e URL=0.0.0.0:4001 transport_ms
 ```
 **Comando si ya existe el contenedor**
 
 ```
-docker run -p 4000:4000 -e DB_HOST=172.17.0.2 -e DB_PORT=3306 -e DB_USER=root -e DB_PASSWORD=secret -e DB_NAME=transporte -e URL=0.0.0.0:4000 transport_ms
+docker run -p 4001:4001 -e DB_HOST=172.17.0.2 -e DB_PORT=3306 -e DB_USER=root -e DB_PASSWORD=secret -e DB_NAME=transporte -e URL=0.0.0.0:4001 transport_ms
 ```
 
 6.  Dentro del directorio **transport_api** ejecutar el comando
@@ -33,15 +33,15 @@ docker run -p 4000:4000 -e DB_HOST=172.17.0.2 -e DB_PORT=3306 -e DB_USER=root -e
 **Comando al ejecutar por primera vez**
 
 ```
-docker build -t transport_api . && docker run -p 5000:5000 transport_api
+docker build -t transport_api . && docker run -p 4002:4002 transport_api
 ```
 **Comando si ya existe el contenedor**
 
 ```
-docker build -t transport_api . && docker run -p 5000:5000 transport_api
+docker build -t transport_api . && docker run -p 4002:4002 transport_api
 ```
 
-7.  Abrir  GraphQL : http://localhost:5000/graphiql
+7.  Abrir  GraphQL : http://localhost:4002/graphiql
 
 8.  Hacer las siguientes consultas:
 

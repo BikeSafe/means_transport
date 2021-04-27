@@ -1,0 +1,15 @@
+version: '3'
+services:
+    user-server:
+        container_name: means-transport-server
+        build: .
+        ports:
+            - 4001:4001
+        environment:
+            - PORT=4001
+            - DB_HOST=liche-db.c5jitbjamyxn.us-east-1.rds.amazonaws.com
+            - DB_PORT=3306
+            - DB_USER=admin
+            - DB_PASSWORD=fwO8tOXbIBMBB2MG
+            - DB_NAME=transporte
+            - URL=0.0.0.0:4001 
