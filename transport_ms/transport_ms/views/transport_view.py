@@ -37,16 +37,9 @@ class TransportDetail(mixins.RetrieveModelMixin,
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-class TransportDetailUser(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
-
-    queryset = Transporte.objects.all()
+class TransportDetailUser(generics.ListAPIView):
     serializer_class = TransportSerializer
-
-    def get(self, request, *args, **kwargs):
-        #usertransport = queryset(SELECT * FROM transport_ms_transporte WHERE transport_ms_transporte.id_usuario = %s)
-        usertransport = Transporte.objects.extra(select={"select * from transport_ms_transporte where transport_ms_transporte.id_usuario = %s"},select_params=(someparam,),)
-        return usertransport
+    def get_queryset(self):     
+        id_usuario = self.kwargs['id_usuario']
+        return Transporte.objects.filter(id_usuario=id_usuario)
 
